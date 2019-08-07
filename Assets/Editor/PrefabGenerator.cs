@@ -13,20 +13,18 @@ public class PrefabGenerator : MonoBehaviour
         GameObject[] objectArray = Selection.gameObjects;
 
         // Loop through every GameObject in the array above
-       // foreach (GameObject gameObject in objectArray)
-       // {
+        foreach (GameObject gameObject in objectArray)
+        {
             // Set the path as within the Assets folder,
             // and name it as the GameObject's name with the .Prefab format
-            //string localPath = "Assets/" + gameObject.name + ".prefab";
-            string localPath = "Assets/" + "prefab" + ".prefab";
+            string localPath = "Assets/" + gameObject.name + ".prefab";
 
             // Make sure the file name is unique, in case an existing Prefab has the same name.
             localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
 
             // Create the new Prefab.
-            //PrefabUtility.SaveAsPrefabAssetAndConnect(gameObject, localPath, InteractionMode.UserAction);
-            PrefabUtility.SaveAsPrefabAssetAndConnect(objectArray, localPath, InteractionMode.UserAction);
-      //  }
+            PrefabUtility.SaveAsPrefabAssetAndConnect(gameObject, localPath, InteractionMode.UserAction);
+        }
     }
 
     // Disable the menu item if no selection is in place.

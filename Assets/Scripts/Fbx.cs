@@ -10,6 +10,7 @@ public class Fbx : MonoBehaviour
 	bool inventoryEnabled;
 	
     public GameObject inventory;
+    public GameObject itemManager;
 
 	
 		void Update()
@@ -20,10 +21,7 @@ public class Fbx : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             if(Input.GetMouseButtonDown(0)){
-                print(hit.transform.tag);
-                if(hit.transform.tag == "Cube"){
-                    Instantiate(cube, new Vector3(0,0,0), Quaternion.identity);
-                }
+                AddItem(hit.transform.tag);
             }
         }
         
@@ -36,6 +34,14 @@ public class Fbx : MonoBehaviour
          }else{
             inventory.SetActive(false);
          }
+    }
+
+    void AddItem(string tag){
+        if(tag == "Cube"){
+            GameObject cube1= Instantiate(cube, new Vector3(0,0,0), Quaternion.identity);
+            cube1.transform.parent = itemManager.transform;
+            cube1.transform.position = itemManager.transform.position;
+        }
     }
 
 }
